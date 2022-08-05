@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--axios is defined-->
+    <script src="https://unpkg.com/axios@0.27.2/dist/axios.min.js"></script>
     <!-- added css -->
     <!-- added Bootstrap -->
     <link
@@ -19,29 +21,28 @@
     <div class="weather-wrapper">
       <div class="weather-app">
         <div class="overview">
-          <h1>Lviv</h1>
+          <h1 id="city"></h1>
           <ul>
             <li>Sunday 18:00</li>
-            <li>Rain</li>
+            <li id="description"></li>
           </ul>
         </div>
         <div class="row">
           <div class="col-6">
             <div class="clearfix weather-temperature">
               <img
-                src="https://ssl.gstatic.com/onebox/weather/64/rain.png"
+                src="http://openweathermap.org/img/wn/10d@2x.png"
                 alt="Rain"
                 class="float-left"
               />
-              <strong>12</strong>
+              <strong id="temperature"></strong>
               <span class="units">&degC|<a href="#">&degF</a></span>
             </div>
           </div>
           <div class="col-6">
             <ul>
-              <li>Precipitation: 90%</li>
-              <li>Humidity: 63%</li>
-              <li>Wind: 10km/h</li>
+              <li>Humidity:<span id="humidity"></span>%</li>
+              <li>Wind: <span id="wind"></span>km/h</li>
             </ul>
           </div>
         </div>
