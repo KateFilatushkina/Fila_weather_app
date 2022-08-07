@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather application</title>
   </head>
-  <body>
+  <body color="blue">
     <div class="weather-wrapper">
       <div class="weather-app">
         <form id="search-form" class="mb-3">
@@ -52,9 +52,12 @@
                 id="icon"
                 alt="Rain"
                 class="float-left"
+                style="width: 70px"
               />
               <strong id="temperature"></strong>
-              <span class="units"><a href="#" id="tempType" type="c">&deg;C<a/></span>
+              <span class="units"
+                ><a href="#" id="tempType" type="c">&deg;C</a></span
+              >
             </div>
           </div>
           <div class="col-6">
@@ -64,8 +67,23 @@
             </ul>
           </div>
         </div>
+        <div class="weather-forecast">
+          <div class="row">
+            <div class="col-2">
+              <div class="weather-forecast-date">Thu</div>
+              <img
+                src="http://openweathermap.org/img/wn/10d@2x.png"
+                alt=""
+                style="width: 56px"
+              />
+              <div class="weather-forecast-temperatures">
+                <span class="weather-forecast-temperatures-max">18 &deg;</span>
+                <span class="weather-forecast-temperatures-min"> 12 &deg;</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- added css -->
-
         <script src="src/app.js"></script>
       </div>
       <small>
