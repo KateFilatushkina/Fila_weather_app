@@ -30,6 +30,9 @@ function displayTemperature(response) {
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
+  let tempTypeElement = document.querySelector("#tempType");
+  tempTypeElement.type = "c";
+  tempTypeElement.innerHTML = "&deg;C";
 
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   cityElement.innerHTML = response.data.name;
@@ -44,9 +47,45 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
-let apiKey = "74b865ca5035f3429a2f339ef4d0bb28";
-let units = "metric";
-//let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&appid=${apiKey}&units=${units}`;
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Lviv&appid=${apiKey}&units=${units}`;
+function search(city) {
+  let apiKey = "74b865ca5035f3429a2f339ef4d0bb28";
+  let units = "metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
-axios.get(apiUrl).then(displayTemperature);
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+search("Lviv");
+
+function celsiusToFahrenheit(c, elem) {
+  elem.type = "f";
+  elem.innerHTML = "&deg;F";
+  return Math.round(c * (9 / 5) + 32, 0);
+}
+function fahrenheitToCelsius(f, elem) {
+  elem.type = "c";
+  elem.innerHTML = "&deg;C";
+  return Math.round((f - 32) * (5 / 9), 0);
+}
+
+let tempTypeElement = document.querySelector("#tempType");
+
+tempTypeElement.onclick = function () {
+  let temperatureElement = document.querySelector("#temperature");
+  let temp = parseInt(temperatureElement.innerHTML);
+
+  if (this.type == "c") {
+    temperatureElement.innerHTML = celsiusToFahrenheit(temp, this);
+  } else {
+    temperatureElement.innerHTML = fahrenheitToCelsius(temp, this);
+  }
+};
